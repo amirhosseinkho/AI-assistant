@@ -1,11 +1,10 @@
-/* Reset CSS برای بهبود نمایش در مرورگرهای مختلف */
+/* تنظیمات اولیه */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-/* استایل کلی صفحه */
 body {
     display: flex;
     align-items: center;
@@ -17,7 +16,6 @@ body {
     text-align: right;
 }
 
-/* استایل کانتینر */
 .container {
     width: 100%;
     max-width: 600px;
@@ -27,14 +25,12 @@ body {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-/* استایل عنوان */
 h1 {
     text-align: center;
     color: #333;
     margin-bottom: 20px;
 }
 
-/* جعبه چت */
 .chat-box {
     border: 1px solid #ccc;
     padding: 10px;
@@ -44,13 +40,11 @@ h1 {
     background-color: #fafafa;
 }
 
-/* لاگ چت */
 #chat-log {
     display: flex;
     flex-direction: column;
 }
 
-/* استایل پیام‌ها */
 .message {
     margin: 5px 0;
     padding: 10px;
@@ -59,21 +53,18 @@ h1 {
     animation: fadeIn 0.3s ease-in-out;
 }
 
-/* پیام کاربر */
 .user-message {
     align-self: flex-end;
     background-color: #d1e7dd;
     border-radius: 15px 15px 0 15px;
 }
 
-/* پیام ربات */
 .bot-message {
     align-self: flex-start;
     background-color: #ffeeba;
     border-radius: 15px 15px 15px 0;
 }
 
-/* انیمیشن پیام‌ها */
 @keyframes fadeIn {
     from {
         opacity: 0;
@@ -85,12 +76,11 @@ h1 {
     }
 }
 
-/* فرم ورود پیام */
 #chat-form {
     display: flex;
+    gap: 10px;
 }
 
-/* ورودی کاربر */
 #user-input {
     flex: 1;
     padding: 10px;
@@ -99,11 +89,9 @@ h1 {
     border-radius: 5px;
 }
 
-/* دکمه ارسال */
 button {
     padding: 10px 20px;
     font-size: 16px;
-    margin-right: 10px;
     background-color: #007bff;
     color: #fff;
     border: none;
@@ -112,7 +100,6 @@ button {
     transition: background-color 0.3s ease;
 }
 
-/* تغییر رنگ دکمه هنگام هاور */
 button:hover {
     background-color: #0056b3;
 }
