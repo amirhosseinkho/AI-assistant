@@ -1,17 +1,23 @@
 async function chatWithModel(message) {
-    const response = await fetch('https://mybanana.vercel.app/api/chat', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ message: message, model: "GPT-4o" }), // مدل به صورت ثابت تنظیم شده است
-    });
+    try {
+        const response = await fetch('https://mybanana.vercel.app/api/chat', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ message: message, model: "GPT-4o" }), // مدل به صورت ثابت
+        });
 
-    if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(`HTTP error! status: ${response.status}, ${errorData.error}`);
+        if (!response.ok) {
+            const errorData = await response.json();
+            console.error(`HTTP error! status: ${response.status}`, errorData);
+            return `Error: ${errorData.error || 'An unknown error occurred'}`;
+        }
+
+        const data = await response.json();
+        return data.reply;
+    } catch (error) {
+        console.error('Fetch error:', error);
+        return 'An error occurred while communicating with the server.';
     }
-
-    const data = await response.json();
-    return data.reply;
 }
