@@ -28,7 +28,7 @@ function addMessageToChatLog(message, className) {
 }
 
 async function chatWithModel(message, model) {
-    const response = await fetch('https://mybanana.vercel.app/myAPI/chat', {
+    const response = await fetch('https://lingering-silence-c5f1.amirhossein-khoshb.workers.dev/', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
