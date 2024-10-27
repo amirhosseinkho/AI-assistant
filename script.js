@@ -13,9 +13,10 @@ document.getElementById('chat-form').addEventListener('submit', async function (
 
     try {
         const botResponse = await chatWithGPT(userInput);
+        console.log('Bot response:', botResponse); // لاگ برای دیباگ
         updateLastBotMessage(botResponse);
     } catch (error) {
-        updateLastBotMessage(error);
+        updateLastBotMessage(`خطا: ${error.message}`);
         console.error('Error:', error);
     }
 });
@@ -35,7 +36,8 @@ async function chatWithGPT(message) {
     });
 
     if (!response.ok) {
-        throw new Error(HTTP error! status: ${response.status});
+        const errorData = await response.json();
+        throw new Error(`HTTP error! status: ${response.status}, ${errorData.error.message}`);
     }
 
     const data = await response.json();
