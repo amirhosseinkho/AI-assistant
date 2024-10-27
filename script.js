@@ -1,17 +1,17 @@
 document.getElementById('chat-form').addEventListener('submit', async function (event) {
-    event.preventDefault(); // جلوگیری از ری‌لود صفحه
+    event.preventDefault();
 
     const userInput = document.getElementById('user-input').value.trim();
-    const model = document.querySelector('input[name="model"]:checked').value;
+    const model = document.getElementById('model-select').value;
 
-    if (!userInput) return; // جلوگیری از ارسال پیام خالی
+    if (!userInput) return;
 
-    addMessageToChatLog(userInput, 'user-message'); // نمایش پیام کاربر
-    document.getElementById('user-input').value = ''; // پاک کردن ورودی
+    addMessageToChatLog(userInput, 'user-message');
+    document.getElementById('user-input').value = '';
 
     try {
-        const reply = await chatWithModel(userInput, model); // دریافت پاسخ
-        addMessageToChatLog(reply, 'bot-message'); // نمایش پاسخ ربات
+        const reply = await chatWithModel(userInput, model);
+        addMessageToChatLog(formatMessage(reply), 'bot-message');
     } catch (error) {
         console.error('Error in chat:', error);
         addMessageToChatLog('خطا در ارتباط با سرور', 'bot-message');
@@ -22,9 +22,9 @@ function addMessageToChatLog(message, className) {
     const chatLog = document.getElementById('chat-log');
     const messageElement = document.createElement('div');
     messageElement.classList.add('message', className);
-    messageElement.textContent = message;
+    messageElement.innerHTML = message; // تغییر به innerHTML برای پشتیبانی از فرمت‌ها
     chatLog.appendChild(messageElement);
-    chatLog.scrollTop = chatLog.scrollHeight; // اسکرول به انتهای چت
+    chatLog.scrollTop = chatLog.scrollHeight;
 }
 
 async function chatWithModel(message, model) {
@@ -43,4 +43,11 @@ async function chatWithModel(message, model) {
 
     const data = await response.json();
     return data.reply;
+}
+
+// تابع فرمت‌دهی پیام
+function formatMessage(message) {
+    return message
+        .replace(/\*\*(.*?)\*\*/g, '<b>$1</b>') // بولد کردن
+        .replace(/### (.*?)\n/g, '<h3>$1</h3>'); // تیتر
 }
