@@ -7,7 +7,7 @@ async function chatWithGPT(message) {
                 'Authorization': 'Bearer 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'
             },
             body: JSON.stringify({
-                model: 'gpt-3.5-turbo-0125',
+                model: 'gpt-3.5-turbo',
                 messages: [{ role: 'user', content: message }]
             })
         });
