@@ -1,81 +1,118 @@
+/* Reset CSS برای بهبود نمایش در مرورگرهای مختلف */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* استایل کلی صفحه */
 body {
-    background-color #f0f0f0;
-    font-family 'Tahoma', sans-serif;
-    direction rtl;
-    text-align right;
-    margin 0;
-    padding 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-color: #f0f0f0;
+    font-family: 'Tahoma', sans-serif;
+    direction: rtl;
+    text-align: right;
 }
 
+/* استایل کانتینر */
 .container {
-    width 60%;
-    margin 50px auto;
-    background-color #fff;
-    padding 20px;
-    border-radius 10px;
+    width: 100%;
+    max-width: 600px;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
+/* استایل عنوان */
 h1 {
-    text-align center;
-    color #333;
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
 }
 
+/* جعبه چت */
 .chat-box {
-    border 1px solid #ccc;
-    padding 10px;
-    height 300px;
-    overflow-y scroll;
-    margin-bottom 10px;
-    background-color #fafafa;
+    border: 1px solid #ccc;
+    padding: 10px;
+    height: 300px;
+    overflow-y: scroll;
+    margin-bottom: 10px;
+    background-color: #fafafa;
 }
 
+/* لاگ چت */
 #chat-log {
-    display flex;
-    flex-direction column;
+    display: flex;
+    flex-direction: column;
 }
 
+/* استایل پیام‌ها */
 .message {
-    margin 5px 0;
-    max-width 80%;
+    margin: 5px 0;
+    padding: 10px;
+    max-width: 80%;
+    word-wrap: break-word;
+    animation: fadeIn 0.3s ease-in-out;
 }
 
+/* پیام کاربر */
 .user-message {
-    align-self flex-end;
-    background-color #d1e7dd;
-    padding 10px;
-    border-radius 10px;
+    align-self: flex-end;
+    background-color: #d1e7dd;
+    border-radius: 15px 15px 0 15px;
 }
 
+/* پیام ربات */
 .bot-message {
-    align-self flex-start;
-    background-color #ffeeba;
-    padding 10px;
-    border-radius 10px;
+    align-self: flex-start;
+    background-color: #ffeeba;
+    border-radius: 15px 15px 15px 0;
 }
 
+/* انیمیشن پیام‌ها */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* فرم ورود پیام */
 #chat-form {
-    display flex;
+    display: flex;
 }
 
+/* ورودی کاربر */
 #user-input {
-    flex 1;
-    padding 10px;
-    font-size 16px;
-    border 1px solid #ccc;
-    border-radius 5px;
+    flex: 1;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
 }
 
+/* دکمه ارسال */
 button {
-    padding 10px 20px;
-    font-size 16px;
-    margin-right 10px;
-    background-color #007bff;
-    color #fff;
-    border none;
-    border-radius 5px;
-    cursor pointer;
+    padding: 10px 20px;
+    font-size: 16px;
+    margin-right: 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
 }
 
-buttonhover {
-    background-color #0056b3;
+/* تغییر رنگ دکمه هنگام هاور */
+button:hover {
+    background-color: #0056b3;
 }
