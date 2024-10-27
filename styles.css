@@ -6,49 +6,56 @@
 }
 
 body {
+    height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
-    min-height: 100vh;
-    background-color: #e3f2fd;
+    background-color: #1c1c1c;
     font-family: 'Vazir', sans-serif;
     direction: rtl;
     text-align: right;
 }
 
-/* کانتینر اصلی */
+/* کانتینر */
 .container {
     width: 100%;
-    max-width: 600px;
-    background-color: #fff;
-    padding: 20px;
+    max-width: 700px;
+    height: 90vh;
+    display: flex;
+    flex-direction: column;
+    background-color: #2c2c2c;
     border-radius: 15px;
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
     overflow: hidden;
 }
 
-/* عنوان */
-h1 {
-    text-align: center;
-    color: #1976d2;
-    margin-bottom: 20px;
-    font-size: 28px;
+/* هدر */
+.header {
+    padding: 10px;
+    background-color: #333;
+    display: flex;
+    justify-content: flex-start;
+}
+
+.header select {
+    padding: 8px;
+    border: none;
+    border-radius: 5px;
+    background-color: #444;
+    color: #fff;
+    cursor: pointer;
 }
 
 /* چت باکس */
 .chat-box {
-    border: 2px solid #90caf9;
+    flex: 1;
     padding: 15px;
-    height: 300px;
     overflow-y: auto;
-    margin-bottom: 15px;
-    background-color: #e1f5fe;
-    border-radius: 10px;
+    background-color: #1e1e1e;
 }
 
-/* پیام‌ها */
 .message {
-    margin: 5px 0;
+    margin: 8px 0;
     padding: 10px;
     max-width: 75%;
     word-wrap: break-word;
@@ -57,17 +64,18 @@ h1 {
 
 .user-message {
     align-self: flex-end;
-    background-color: #c8e6c9;
+    background-color: #4caf50;
     border-radius: 15px 15px 0 15px;
+    color: white;
 }
 
 .bot-message {
     align-self: flex-start;
-    background-color: #fff9c4;
+    background-color: #ffc107;
     border-radius: 15px 15px 15px 0;
 }
 
-/* افکت ورود پیام‌ها */
+/* افکت ورود پیام */
 @keyframes fadeIn {
     from {
         opacity: 0;
@@ -82,27 +90,24 @@ h1 {
 /* فرم چت */
 #chat-form {
     display: flex;
-    align-items: center;
-    gap: 10px;
-    margin-top: 10px;
+    padding: 10px;
+    background-color: #333;
 }
 
 #user-input {
     flex: 1;
-    padding: 12px;
-    font-size: 16px;
-    border: 1px solid #90a4ae;
+    padding: 15px;
+    font-size: 18px;
+    border: none;
     border-radius: 10px;
+    margin-right: 10px;
 }
 
 button {
-    display: flex;
-    align-items: center;
-    gap: 5px;
-    padding: 10px 15px;
-    font-size: 16px;
-    background-color: #42a5f5;
-    color: #fff;
+    padding: 15px 25px;
+    font-size: 18px;
+    background-color: #2196f3;
+    color: white;
     border: none;
     border-radius: 10px;
     cursor: pointer;
@@ -110,13 +115,5 @@ button {
 }
 
 button:hover {
-    background-color: #1e88e5;
-}
-
-/* انتخاب مدل */
-.model-select label {
-    display: block;
-    margin: 5px 0;
-    cursor: pointer;
-    font-size: 16px;
+    background-color: #1976d2;
 }
