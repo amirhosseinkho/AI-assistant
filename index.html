@@ -3,37 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>چت هوش مصنوعی</title>
+    <title>چت با هوش مصنوعی</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <div class="container">
-        <h1>چت با هوش مصنوعی</h1>
+        <div class="header">
+            <select id="model-select">
+                <option value="ft:gpt-4o-mini-2024-07-18:personal:pterom:AMzYGjf3">مدل اول - Ptero</option>
+                <option value="ft:gpt-4o-mini-2024-07-18:personal:banayar:AMSlsFBV">مدل دوم - Banayar</option>
+                <option value="gpt-4o-mini">مدل سوم - gpt-4o-mini</option>
+            </select>
+        </div>
 
         <div class="chat-box">
             <div id="chat-log"></div>
         </div>
 
         <form id="chat-form">
-            <div class="model-select">
-                <label>
-                    <input type="radio" name="model" value="ft:gpt-4o-mini-2024-07-18:personal:pterom:AMzYGjf3" checked>
-                    مدل اول - Ptero
-                </label>
-                <label>
-                    <input type="radio" name="model" value="ft:gpt-4o-mini-2024-07-18:personal:banayar:AMSlsFBV">
-                    مدل دوم - Banayar
-                </label>
-                <label>
-                    <input type="radio" name="model" value="gpt-4o-mini">
-                    مدل سوم - gpt-4o-mini
-                </label>
-            </div>
-
             <input type="text" id="user-input" placeholder="سوال خود را اینجا بنویسید..." required>
-            <button type="submit">
-                <span>ارسال</span> 🚀
-            </button>
+            <button type="submit">ارسال</button>
         </form>
     </div>
 
