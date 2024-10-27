@@ -1,3 +1,7 @@
+document.getElementById('model-select').addEventListener('change', function () {
+    clearChatLog(); // پاک کردن چت با تغییر مدل
+});
+
 document.getElementById('chat-form').addEventListener('submit', async function (event) {
     event.preventDefault();
 
@@ -14,17 +18,22 @@ document.getElementById('chat-form').addEventListener('submit', async function (
         addMessageToChatLog(formatMessage(reply), 'bot-message');
     } catch (error) {
         console.error('Error in chat:', error);
-        addMessageToChatLog('خطا در ارتباط با سرور', 'bot-message');
+        addMessageToChatLog('خطا در ارتباط با سرور', 'error-message');
     }
 });
+
+function clearChatLog() {
+    const chatLog = document.getElementById('chat-log');
+    chatLog.innerHTML = ''; // پاک کردن تمام پیام‌ها
+}
 
 function addMessageToChatLog(message, className) {
     const chatLog = document.getElementById('chat-log');
     const messageElement = document.createElement('div');
     messageElement.classList.add('message', className);
-    messageElement.innerHTML = message; // تغییر به innerHTML برای پشتیبانی از فرمت‌ها
+    messageElement.innerHTML = message;
     chatLog.appendChild(messageElement);
-    chatLog.scrollTop = chatLog.scrollHeight;
+    chatLog.scrollTop = chatLog.scrollHeight; // اسکرول به انتهای چت
 }
 
 async function chatWithModel(message, model) {
