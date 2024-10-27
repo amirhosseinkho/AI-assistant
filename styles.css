@@ -10,7 +10,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: #1c1c1c;
+    background-color: #1a1a1d;
     font-family: 'Vazir', sans-serif;
     direction: rtl;
     text-align: right;
@@ -23,7 +23,7 @@ body {
     height: 90vh;
     display: flex;
     flex-direction: column;
-    background-color: #2c2c2c;
+    background-color: #2e2e38;
     border-radius: 15px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
     overflow: hidden;
@@ -32,7 +32,7 @@ body {
 /* هدر */
 .header {
     padding: 10px;
-    background-color: #333;
+    background-color: #25252a;
     display: flex;
     justify-content: flex-start;
 }
@@ -51,7 +51,7 @@ body {
     flex: 1;
     padding: 15px;
     overflow-y: auto;
-    background-color: #1e1e1e;
+    background-color: #1e1e24;
 }
 
 .message {
@@ -64,15 +64,24 @@ body {
 
 .user-message {
     align-self: flex-end;
-    background-color: #4caf50;
+    background-color: #4b4b4b;
     border-radius: 15px 15px 0 15px;
     color: white;
 }
 
 .bot-message {
     align-self: flex-start;
-    background-color: #ffc107;
+    background-color: #3a3f5c;
     border-radius: 15px 15px 15px 0;
+    color: white;
+}
+
+.error-message {
+    align-self: center;
+    background-color: #ff4c4c;
+    border-radius: 15px;
+    color: white;
+    font-weight: bold;
 }
 
 /* افکت ورود پیام */
