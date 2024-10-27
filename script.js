@@ -14,7 +14,7 @@ document.getElementById('chat-form').addEventListener('submit', async function (
         addMessageToChatLog(reply, 'bot-message'); // نمایش پاسخ ربات
     } catch (error) {
         console.error('Error in chat:', error);
-        addMessageToChatLog('مشکلی در ارتباط با سرور به وجود آمد.', 'bot-message');
+        addMessageToChatLog(error, 'bot-message');
     }
 });
 
