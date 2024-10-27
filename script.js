@@ -33,7 +33,11 @@ function addMessageToChatLog(message, className) {
     messageElement.classList.add('message', className);
     messageElement.innerHTML = message;
     chatLog.appendChild(messageElement);
-    chatLog.scrollTop = chatLog.scrollHeight; // اسکرول به انتهای چت
+
+    // اسکرول به انتهای چت
+    setTimeout(() => {
+        chatLog.scrollTop = chatLog.scrollHeight;
+    }, 100);
 }
 
 async function chatWithModel(message, model) {
