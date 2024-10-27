@@ -27,7 +27,7 @@ async function chatWithGPT(message) {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
-            'Authorization': 'Bearer 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'
+            'Authorization': 'Bearer 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'
         },
         body: JSON.stringify({
             model: 'gpt-3.5-turbo',
