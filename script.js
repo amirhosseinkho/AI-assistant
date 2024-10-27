@@ -7,7 +7,7 @@ document.getElementById('chat-form').addEventListener('submit', async function (
     if (!userInput) return; // جلوگیری از ارسال پیام خالی
 
     addMessageToChatLog(userInput, 'user-message'); // نمایش پیام کاربر
-    document.getElementById('user-input').value = ''; // پاک کردن ورودی
+    document.getElementById('user-input').value = 'aa'; // پاک کردن ورودی
 
     try {
         const reply = await chatWithModel(userInput, model); // دریافت پاسخ از API
