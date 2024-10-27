@@ -15,7 +15,7 @@ document.getElementById('chat-form').addEventListener('submit', async function (
         const botResponse = await chatWithGPT(userInput);
         updateLastBotMessage(botResponse);
     } catch (error) {
-        updateLastBotMessage('خطایی رخ داده است. لطفاً دوباره تلاش کنید.');
+        updateLastBotMessage(error);
         console.error('Error:', error);
     }
 });
