@@ -1,32 +1,52 @@
-<!DOCTYPE html>
-<html lang="fa">
-<head>
-    <meta charset="UTF-8">
-    <title>پرسش و پاسخ</title>
-    <link rel="stylesheet" href="./styles.css">
-</head>
-<body>
+document.getElementById('chat-form').addEventListener('submit', async function (event) {
+    event.preventDefault(); // جلوگیری از ری‌لود شدن صفحه
 
-    <div class="container">
-        <h1>پرسش خود را وارد کنید</h1>
+    const userInput = document.getElementById('user-input').value.trim();
+    const model = document.getElementById('model-select').value;
+    const chatLog = document.getElementById('chat-log');
 
-        <div class="chat-box">
-            <div id="chat-log"></div>
-        </div>
+    if (!userInput) return; // اگر ورودی خالی بود، کاری انجام نده
 
-        <!-- فرم ورود پیام و انتخاب مدل -->
-        <form id="chat-form">
-            <select id="model-select">
-                <option value="ft:gpt-4o-mini-2024-07-18:personal:pterom:AMzYGjf3">مدل اول - Pterom</option>
-                <option value="ft:gpt-4o-mini-2024-07-18:personal:banayar:AMSlsFBV">مدل دوم - Banayar</option>
-            </select>
+    // نمایش پیام کاربر در صفحه
+    addMessageToChatLog('شما:', userInput);
 
-            <input type="text" id="user-input" placeholder="سوال خود را اینجا بنویسید..." required>
-            <button type="submit">ارسال</button>
-        </form>
-    </div>
+    // پاک کردن ورودی کاربر
+    document.getElementById('user-input').value = '';
 
-    <script src="script.js"></script>
+    try {
+        const reply = await chatWithModel(userInput, model);
+        addMessageToChatLog('ربات:', reply);
+    } catch (error) {
+        console.error('Error in chat:', error);
+        addMessageToChatLog('خطا:', 'مشکلی در ارتباط با سرور به وجود آمد.');
+    }
+});
 
-</body>
-</html>
+// تابع برای نمایش پیام در چت
+function addMessageToChatLog(sender, message) {
+    const chatLog = document.getElementById('chat-log');
+    const messageElement = document.createElement('div');
+    messageElement.classList.add('chat-message');
+    messageElement.innerHTML = `<strong>${sender}</strong> ${message}`;
+    chatLog.appendChild(messageElement);
+    chatLog.scrollTop = chatLog.scrollHeight; // اسکرول به انتهای چت
+}
+
+// تابع ارتباط با API
+async function chatWithModel(message, model) {
+    const response = await fetch('https://mybanana.vercel.app/api/chat', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ message: message, model: model }),
+    });
+
+    if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(`HTTP error! status: ${response.status}, ${errorData.error}`);
+    }
+
+    const data = await response.json();
+    return data.reply;
+}
