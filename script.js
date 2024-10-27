@@ -1,8 +1,8 @@
 document.getElementById('chat-form').addEventListener('submit', async function (event) {
-    event.preventDefault(); // جلوگیری از ری‌لود شدن صفحه
+    event.preventDefault(); // جلوگیری از ری‌لود صفحه
 
     const userInput = document.getElementById('user-input').value.trim();
-    const model = document.getElementById('model-select').value;
+    const model = document.querySelector('input[name="model"]:checked').value;
 
     if (!userInput) return; // جلوگیری از ارسال پیام خالی
 
@@ -10,11 +10,11 @@ document.getElementById('chat-form').addEventListener('submit', async function (
     document.getElementById('user-input').value = ''; // پاک کردن ورودی
 
     try {
-        const reply = await chatWithModel(userInput, model); // دریافت پاسخ از API
+        const reply = await chatWithModel(userInput, model); // دریافت پاسخ
         addMessageToChatLog(reply, 'bot-message'); // نمایش پاسخ ربات
     } catch (error) {
         console.error('Error in chat:', error);
-        addMessageToChatLog(error, 'bot-message');
+        addMessageToChatLog('خطا در ارتباط با سرور', 'bot-message');
     }
 });
 
@@ -33,7 +33,7 @@ async function chatWithModel(message, model) {
         headers: {
             'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ message: message, model: model }),
+        body: JSON.stringify({ message, model }),
     });
 
     if (!response.ok) {
