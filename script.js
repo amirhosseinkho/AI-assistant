@@ -24,7 +24,7 @@ async function chatWithModel(message, model) {
         headers: {
             'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ message: message, model: "GPT-4o}),
+        body: JSON.stringify({ message: message, model: "GPT-4o"}),
     });
 
     if (!response.ok) {
