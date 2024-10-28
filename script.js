@@ -1,5 +1,9 @@
+// ذخیره پیام‌ها در یک آرایه
+let chatHistory = [];
+
 document.getElementById('model-select').addEventListener('change', function () {
     clearChatLog(); // پاک کردن چت با تغییر مدل
+    chatHistory = []; // پاک کردن تاریخچه چت
 });
 
 document.getElementById('chat-form').addEventListener('submit', async function (event) {
@@ -13,9 +17,15 @@ document.getElementById('chat-form').addEventListener('submit', async function (
     addMessageToChatLog(userInput, 'user-message');
     document.getElementById('user-input').value = '';
 
+    // اضافه کردن پیام کاربر به تاریخچه
+    chatHistory.push({ role: 'user', content: userInput });
+
     try {
-        const reply = await chatWithModel(userInput, model);
-        addMessageToChatLog(formatMessage(reply), 'bot-message');
+        const reply = await chatWithModel(chatHistory, model);
+        addMessageToChatLog(reply, 'bot-message');
+
+        // اضافه کردن پاسخ ربات به تاریخچه
+        chatHistory.push({ role: 'assistant', content: reply });
     } catch (error) {
         console.error('Error in chat:', error);
         addMessageToChatLog('خطا در ارتباط با سرور', 'error-message');
@@ -37,16 +47,16 @@ function addMessageToChatLog(message, className) {
     // اسکرول به انتهای چت
     setTimeout(() => {
         chatLog.scrollTop = chatLog.scrollHeight;
-    }, 100);
+    }, 0); // با تأخیر صفر میلی‌ثانیه برای اطمینان از اسکرول
 }
 
-async function chatWithModel(message, model) {
+async function chatWithModel(messages, model) {
     const response = await fetch('https://lingering-silence-c5f1.amirhossein-khoshb.workers.dev/', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ message, model }),
+        body: JSON.stringify({ messages, model }), // ارسال تاریخچه چت
     });
 
     if (!response.ok) {
@@ -56,11 +66,4 @@ async function chatWithModel(message, model) {
 
     const data = await response.json();
     return data.reply;
-}
-
-// تابع فرمت‌دهی پیام
-function formatMessage(message) {
-    return message
-        .replace(/\*\*(.*?)\*\*/g, '<b>$1</b>') // بولد کردن
-        .replace(/### (.*?)\n/g, '<h3>$1</h3>'); // تیتر
 }
