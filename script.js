@@ -47,7 +47,7 @@ function addMessageToChatLog(message, className) {
     // اسکرول به انتهای چت
     setTimeout(() => {
         chatLog.scrollTop = chatLog.scrollHeight;
-    }, 0); // با تأخیر صفر میلی‌ثانیه برای اطمینان از اسکرول
+    }, 0); // تأخیر صفر برای اطمینان از اسکرول
 }
 
 async function chatWithModel(messages, model) {
@@ -56,7 +56,10 @@ async function chatWithModel(messages, model) {
         headers: {
             'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ messages, model }), // ارسال تاریخچه چت
+        body: JSON.stringify({
+            model: model,
+            message: messages.map(m => m.content).join('\n') // ساخت متن کامل از تاریخچه پیام‌ها
+        }),
     });
 
     if (!response.ok) {
