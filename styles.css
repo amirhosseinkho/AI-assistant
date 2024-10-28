@@ -114,9 +114,10 @@ body {
     background-color: #2e2e38;
     color: white;
     outline: none;
+    /* جلوگیری از نمایش پیشنهادات مرورگر */
+    autocomplete: off;
 }
 
-/* حذف Auto-complete مرورگر */
 input::-webkit-contacts-auto-fill-button,
 input::-webkit-calendar-picker-indicator,
 input::-webkit-autofill {
